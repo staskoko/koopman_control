@@ -22,7 +22,7 @@ def trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_
   c_m = 0
 
   for i in range(M):
-    path1 = f"/home/trarity/koopman_control/data/Autoencoder_model_params{i}.pth"
+    path1 = f"/home/master/koopman_control/data/Autoencoder_model_params{i}.pth"
     path2 = f"C:/Users/jokin/Desktop/Uni/Aalborg/Master/Masters_Thesis/Path/Autoencoder_model_params{i}.pth"
     if os.path.exists(path1):
         Model_path.append(path1)
