@@ -15,9 +15,6 @@ from Data_Generation import DataGenerator
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
 
-# Define file path for the CSV file
-file_path = '/home/trarity/koopman_1/data/simulation_results.csv'
-
 # Data Generation
 
 numICs = 10000
