@@ -51,7 +51,7 @@ model = AUTOENCODER(Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv,
 
 # Training Loop
 
-eps = 1000        # Number of epochs per batch size
+eps = 5       # Number of epochs per batch size
 lr = 1e-3        # Learning rate
 batch_size = 256
 S_p = 30
