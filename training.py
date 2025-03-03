@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader, TensorDataset
 import torch.optim as optim
 import os
 
-from help_func import self_feeding
+from help_func import self_feeding, enc_self_feeding
 from loss_func import total_loss
 from nn_structure import AUTOENCODER
 
@@ -83,7 +83,7 @@ def trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_
       torch.save(model.state_dict(), model_path_i)
 
       for (batch_x,) in test_loader:
-        [traj_prediction, loss] = self_feeding(model, batch_x, Num_meas)
+        [traj_prediction, loss] = enc_self_feeding(model, batch_x, Num_meas)
         running_loss += loss.item()
 
       avg_loss = running_loss / len(test_loader)
