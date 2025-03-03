@@ -43,13 +43,18 @@ print(f"Validation tensor shape: {val_tensor.shape}")
 # NN Structure
 
 Num_meas = 2
-Num_Obsv = 3
-Num_Neurons = 64
-Num_hidden_encoder = 3 
-Num_hidden_decoder = 3
+Num_inputs = 1
+Num_x_Obsv = 3
+Num_u_Obsv = 3
+Num_x_Neurons = 30
+Num_u_Neurons = 30
+Num_hidden_x_encoder = 2
+Num_hidden_x_decoder = 2
+Num_hidden_u_encoder = 2
+Num_hidden_u_decoder = 2
 
 # Instantiate the model and move it to the GPU (if available)
-model = AUTOENCODER(Num_meas, Num_Obsv, Num_Neurons, Num_hidden_encoder, Num_hidden_decoder)#.to(device)
+model = AUTOENCODER(Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv, Num_u_Neurons, Num_hidden_x_encoder, Num_hidden_x_decoder, Num_hidden_u_encoder, Num_hidden_u_decoder)
 
 
 # Training Loop
@@ -63,7 +68,7 @@ alpha = [0.1, 10e-7, 10e-15]
 W = 0
 M = 1 # Amount of models you want to run
 
-[Lowest_loss, Lowest_test_loss, Best_Model] = trainingfcn(eps, lr, batch_size, S_p, T, alpha, W, Num_meas, Num_Obsv, Num_Neurons, Num_hidden_encoder, Num_hidden_decoder, train_tensor, test_tensor, M)
+[Lowest_loss, Lowest_test_loss, Best_Model] = trainingfcn(eps, lr, batch_size, S_p, alpha, Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv, Num_u_Neurons, Num_hidden_x_encoder, Num_hidden_x_decoder, Num_hidden_u_encoder, Num_hidden_u_decoder, train_tensor, test_tensor, M)
 
 # Load the parameters of the best model
 model.load_state_dict(torch.load(Best_Model))
