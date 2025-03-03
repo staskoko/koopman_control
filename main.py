@@ -72,7 +72,7 @@ print(f"Loaded model parameters from Model: {Best_Model}")
 end_time =  time.time()
 
 total_time = end_time - start_time
-total_raining_time = end_time - start_training_time
+total_training_time = end_time - start_training_time
 
 
 print(f"Total time is: {total_time}")
