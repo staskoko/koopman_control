@@ -1,8 +1,3 @@
-# Import for data manipulation and file handling
-import pandas as pd
-import numpy as np
-
-# Import PyTorch and its modules for building and training neural networks
 import torch
 import torch.nn as nn
 import torch.optim as optim
