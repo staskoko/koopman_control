@@ -105,7 +105,7 @@ plt.show()
 
 # Choose three distinct sample indices
 sample_indices = r.sample(range(train_tensor.shape[0]), 3)
-[train_pred_traj, train_loss] = self_feeding(model, train_tensor)
+[train_pred_traj, train_loss] = self_feeding(model, train_tensor, Num_meas)
 
 print(f"Running loss for training: {train_loss:.3e}")
 
