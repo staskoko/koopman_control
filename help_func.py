@@ -1,6 +1,4 @@
 import torch
-import torch.nn.functional as F
-
 
 def self_feeding(model, xuk, Num_meas):
     initial_input = xuk[:, 0, :]
