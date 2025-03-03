@@ -2,6 +2,7 @@ import torch
 from torch.utils.data import DataLoader, TensorDataset
 import torch.optim as optim
 
+from help_func import self_feeding
 from loss_func import total_loss
 from nn_structure import AUTOENCODER
 
