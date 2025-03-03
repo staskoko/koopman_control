@@ -21,14 +21,14 @@ def trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_
   Running_Losses_Array = []
   c_m = 0
 
-  for i in range(M):
+   for i in range(M):
     path1 = f"/home/trarity/master/koopman_control/data/Autoencoder_model_params{i}.pth"
     path2 = f"C:/Users/jokin/Desktop/Uni/Aalborg/Master/Masters_Thesis/Path/Autoencoder_model_params{i}.pth"
     if os.path.exists(path1):
         Model_path.append(path1)
     else:
         Model_path.append(path2)
-      
+        
   for model_path_i in Model_path:
       training_attempt = 0
       while True:  # Re-run the training loop until no NaN is encountered
@@ -46,7 +46,7 @@ def trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_
               running_loss = 0.0
               for (batch_x,) in train_loader:
                   optimizer.zero_grad()
-                  loss = total_loss(alpha, batch_x, Num_meas, S_p, T, model)
+                  loss = total_loss(alpha, batch_x, Num_meas, Num_x_Obsv, T, S_p, model)
 
                   # Check if loss is NaN; if so, break out of loops
                   if torch.isnan(loss):
