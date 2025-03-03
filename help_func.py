@@ -1,4 +1,7 @@
 import torch
+import torch.nn.functional as F
+
+from loss_func import custom_loss
 
 def self_feeding(model, xuk, Num_meas):
     initial_input = xuk[:, 0, :]
