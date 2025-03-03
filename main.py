@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader, TensorDataset
 import matplotlib.pyplot as plt
 import random as r
 
-from help_func import self_feeding
+from help_func import self_feeding, enc_self_feeding
 from nn_structure import AUTOENCODER
 from training import trainingfcn
 from Data_Generation import DataGenerator
@@ -71,7 +71,7 @@ print(f"Loaded model parameters from Model: {Best_Model}")
 
 # Choose three distinct sample indices
 sample_indices = r.sample(range(val_tensor.shape[0]), 3)
-[Val_pred_traj, val_loss] = self_feeding(model, val_tensor, Num_meas)
+[Val_pred_traj, val_loss] = enc_self_feeding(model, val_tensor, Num_meas)
 
 print(f"Running loss for validation: {val_loss:.3e}")
 
@@ -105,7 +105,7 @@ plt.show()
 
 # Choose three distinct sample indices
 sample_indices = r.sample(range(train_tensor.shape[0]), 3)
-[train_pred_traj, train_loss] = self_feeding(model, train_tensor, Num_meas)
+[train_pred_traj, train_loss] = enc_self_feeding(model, train_tensor, Num_meas)
 
 print(f"Running loss for training: {train_loss:.3e}")
 
