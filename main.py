@@ -5,6 +5,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
 import matplotlib.pyplot as plt
 import random as r
+import time
 
 from help_func import self_feeding, enc_self_feeding
 from nn_structure import AUTOENCODER
@@ -15,6 +16,7 @@ from Data_Generation import DataGenerator
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
 
+start_time = time.time()
 # Data Generation
 
 numICs = 10000
@@ -51,7 +53,7 @@ model = AUTOENCODER(Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv,
 
 # Training Loop
 
-eps = 1000       # Number of epochs per batch size
+eps = 5       # Number of epochs per batch size
 lr = 1e-3        # Learning rate
 batch_size = 256
 S_p = 30
@@ -66,6 +68,11 @@ M = 1 # Amount of models you want to run
 model.load_state_dict(torch.load(Best_Model))
 print(f"Loaded model parameters from Model: {Best_Model}")
 
+end_time =  time.time()
+
+total_time = end_time - start_time
+
+print(f"Total time is: {total_time}")
 
 # Result Plotting
 
