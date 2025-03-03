@@ -71,7 +71,7 @@ print(f"Loaded model parameters from Model: {Best_Model}")
 
 # Choose three distinct sample indices
 sample_indices = r.sample(range(val_tensor.shape[0]), 3)
-[Val_pred_traj, val_loss] = self_feeding(model, val_tensor)
+[Val_pred_traj, val_loss] = self_feeding(model, val_tensor, Num_meas)
 
 print(f"Running loss for validation: {val_loss:.3e}")
 
