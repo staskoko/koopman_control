@@ -7,6 +7,20 @@ from help_func import self_feeding, enc_self_feeding
 from loss_func import total_loss
 from nn_structure import AUTOENCODER
 
+def get_model_path(i):
+    path1 = f"/home/trarity/master/koopman_control/data/Autoencoder_model_params{i}.pth"
+    path2 = f"C:/Users/jokin/Desktop/Uni/Aalborg/Master/Masters_Thesis/Path/Autoencoder_model_params{i}.pth"
+    path3 = f"/content/drive/My Drive/Colab Notebooks/Autoencoder_model_params{i}.pth"
+    path4 = f"/content/drive/MyDrive/Colab Notebooks/Autoencoder_model_params{i}.pth"
+    if os.path.exists(path1):
+        return path1
+    elif os.path.exists(path2):
+        return path2
+    elif os.path.exists(path3):
+        return path3
+    else:
+        return path4
+
 def trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv, Num_u_Neurons, Num_hidden_x_encoder, Num_hidden_x_decoder, Num_hidden_u_encoder, Num_hidden_u_decoder, train_tensor, test_tensor, M):
 
   train_dataset = TensorDataset(train_tensor)
