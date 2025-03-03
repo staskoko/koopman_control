@@ -63,7 +63,7 @@ def loss_6(xuk, Num_meas, T, L_4, pred_4, model):
     return L_6, pred_6
 
 
-def total_loss(alpha, xuk, Num_meas, S_p, model):
+def total_loss(alpha, xuk, Num_meas, S_p, T, model):
 
     L_gx = loss_encoder_decoder(xuk[:,:,:Num_meas], model.x_Encoder, model.x_Decoder)
     L_gu = loss_encoder_decoder(xuk, model.u_Encoder, model.u_Decoder)
