@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 import random as r
 
 from help_func import self_feeding
-from loss_func import 
 from nn_structure import AUTOENCODER
 from training import trainingfcn
 from Data_Generation import DataGenerator
