@@ -6,7 +6,7 @@ from help_func import self_feeding
 from loss_func import total_loss
 from nn_structure import AUTOENCODER
 
-def trainingfcn(eps, lr, batch_size, S_p, alpha, Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv, Num_u_Neurons, Num_hidden_x_encoder, Num_hidden_x_decoder, Num_hidden_u_encoder, Num_hidden_u_decoder, train_tensor, test_tensor, M):
+def trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv, Num_u_Neurons, Num_hidden_x_encoder, Num_hidden_x_decoder, Num_hidden_u_encoder, Num_hidden_u_decoder, train_tensor, test_tensor, M):
 
   train_dataset = TensorDataset(train_tensor)
   train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
@@ -40,7 +40,7 @@ def trainingfcn(eps, lr, batch_size, S_p, alpha, Num_meas, Num_inputs, Num_x_Obs
               running_loss = 0.0
               for (batch_x,) in train_loader:
                   optimizer.zero_grad()
-                  loss = total_loss(alpha, batch_x, Num_meas, S_p, model)
+                  loss = total_loss(alpha, batch_x, Num_meas, S_p, T, model)
 
                   # Check if loss is NaN; if so, break out of loops
                   if torch.isnan(loss):
