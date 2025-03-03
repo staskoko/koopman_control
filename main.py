@@ -52,6 +52,7 @@ model = AUTOENCODER(Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv,
 
 
 # Training Loop
+start_training_time = time.time()
 
 eps = 5       # Number of epochs per batch size
 lr = 1e-3        # Learning rate
@@ -71,8 +72,11 @@ print(f"Loaded model parameters from Model: {Best_Model}")
 end_time =  time.time()
 
 total_time = end_time - start_time
+total_raining_time = end_time - start_training_time
+
 
 print(f"Total time is: {total_time}")
+print(f"Total training time is: {total_training_time}")
 
 # Result Plotting
 
