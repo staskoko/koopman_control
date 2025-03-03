@@ -46,16 +46,20 @@ def loss_5(xuk, Num_meas, S_p, L_3, pred_3, model):
 
 def loss_6(xuk, Num_meas, T, L_4, pred_4, model):
     pred_6 = []
-    v = model.u_Encoder(xuk[:, 1:, :])
+    u = xuk[:, 1:, Num_meas:]
     total_6_loss = L_4
     y_k = pred_4
     pred_6.append(y_k)
+    x_k = xuk[:, 1, :Num_meas]
+
 
     for m in range(1, T-1):
-
-        y_k = model.x_Koopman_op(model.x_Encoder(y_k)) + model.u_Koopman_op(v[:, m, :])
+        v = model.u_Encoder(torch.cat((x_k, u[:, m, :]), dim=1))
+        y_k = model.x_Koopman_op(model.x_Encoder(y_k)) + model.u_Koopman_op(v)
         total_6_loss += F.mse_loss(y_k, model.x_Encoder(xuk[:, m, :Num_meas]), reduction='mean')
         pred_6.append(y_k)
+        x_k = model.x_Decoder(y_k)
+
 
     pred_6 = torch.stack(pred_6, dim=1)
     L_6 = total_6_loss / T
