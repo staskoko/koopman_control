@@ -20,13 +20,13 @@ print("Using device:", device)
 numICs = 10000
 x1range = (-0.5, 0.5)
 x2range = x1range
-T_total = 50
+T_step = 50
 dt = 0.02
 mu = -0.05
 lam = -1
 seed = 1
 
-[train_tensor, test_tensor, val_tensor] = DataGenerator(x1range, x2range, numICs, mu, lam, T_total, dt)
+[train_tensor, test_tensor, val_tensor] = DataGenerator(x1range, x2range, numICs, mu, lam, T_step, dt)
 
 print(f"Train tensor shape: {train_tensor.shape}")
 print(f"Test tensor shape: {test_tensor.shape}")
@@ -60,7 +60,7 @@ alpha = [0.1, 10e-7, 10e-15]
 W = 0
 M = 1 # Amount of models you want to run
 
-[Lowest_loss, Lowest_test_loss, Best_Model] = trainingfcn(eps, lr, batch_size, S_p, alpha, Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv, Num_u_Neurons, Num_hidden_x_encoder, Num_hidden_x_decoder, Num_hidden_u_encoder, Num_hidden_u_decoder, train_tensor, test_tensor, M)
+[Lowest_loss, Lowest_test_loss, Best_Model] = trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_Obsv, Num_x_Neurons, Num_u_Obsv, Num_u_Neurons, Num_hidden_x_encoder, Num_hidden_x_decoder, Num_hidden_u_encoder, Num_hidden_u_decoder, train_tensor, test_tensor, M)
 
 # Load the parameters of the best model
 model.load_state_dict(torch.load(Best_Model))
