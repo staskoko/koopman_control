@@ -25,15 +25,16 @@ file_path = '/home/trarity/koopman_1/data/simulation_results.csv'
 
 # Data Generation
 
-numICs = 7143
+numICs = 10000
 x1range = (-0.5, 0.5)
 x2range = x1range
-tSpan = torch.arange(0.0, 1.02, 0.02)
+T = 50
+dt = 0.02
 mu = -0.05
 lam = -1
-gen_type = 0
+seed = 1
 
-[train_tensor, test_tensor, val_tensor] = DataGenerator(x1range, x2range, numICs, tSpan, mu, lam, file_path, gen_type)
+[train_tensor, test_tensor, val_tensor] = DataGenerator(x1range, x2range, numICs, mu, lam, T, dt)
 
 print(f"Train tensor shape: {train_tensor.shape}")
 print(f"Test tensor shape: {test_tensor.shape}")
