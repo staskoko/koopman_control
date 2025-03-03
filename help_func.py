@@ -21,3 +21,25 @@ def self_feeding(model, xuk, Num_meas):
     loss = custom_loss(predictions, xuk)
 
     return predictions, loss
+
+
+def enc_self_feeding(model, xuk, Num_meas):
+    x_k = xuk[:, 0, :Num_meas]
+    u = xuk[:, :, Num_meas:]
+
+    num_steps = int(len(xuk[0, :, 0]))
+    predictions = []
+    predictions.append(x_k)
+
+    y_k = model.x_Encoder(x_k)
+    for m in range(0, T-1):
+
+        v = model.u_Encoder(torch.cat((x_k, u[:, m, :]), dim=1))
+        y_k = model.x_Koopman_op(model.x_Encoder(y_k)) + model.u_Koopman_op(v)
+        x_k = model.x_Decoder(y_k)
+        predictions.append(x_k)
+
+    predictions = torch.stack(predictions, dim=1)
+    loss = custom_loss(predictions, xuk[:, :, :Num_meas])
+
+    return predictions, loss
