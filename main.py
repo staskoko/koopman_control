@@ -20,13 +20,13 @@ print("Using device:", device)
 numICs = 10000
 x1range = (-0.5, 0.5)
 x2range = x1range
-T = 50
+T_total = 50
 dt = 0.02
 mu = -0.05
 lam = -1
 seed = 1
 
-[train_tensor, test_tensor, val_tensor] = DataGenerator(x1range, x2range, numICs, mu, lam, T, dt)
+[train_tensor, test_tensor, val_tensor] = DataGenerator(x1range, x2range, numICs, mu, lam, T_total, dt)
 
 print(f"Train tensor shape: {train_tensor.shape}")
 print(f"Test tensor shape: {test_tensor.shape}")
