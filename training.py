@@ -67,7 +67,7 @@ def trainingfcn(eps, lr, batch_size, S_p, T, alpha, Num_meas, Num_inputs, Num_x_
                     # Move the batch to the device
                     batch_x = batch_x.to(device, non_blocking=True)
                     optimizer.zero_grad()
-                    loss, L_gx, L_gu, L_3, L_4, L_5, L_6 = total_loss(alpha, batch_x, Num_meas, T, S_p, model)
+                    loss, L_gx, L_gu, L_3, L_4, L_5, L_6 = total_loss(alpha, xuk, Num_meas, Num_x_Obsv, T, S_p, model)
 
                     if torch.isnan(loss):
                         nan_found = True
