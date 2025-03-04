@@ -11,6 +11,7 @@ from help_func import self_feeding, enc_self_feeding
 from nn_structure import AUTOENCODER
 from training import trainingfcn
 from Data_Generation import DataGenerator
+from plotting import plot_results
 
 # Set device to GPU if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
