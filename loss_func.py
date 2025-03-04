@@ -70,6 +70,6 @@ def total_loss(alpha, xuk, Num_meas, Num_x_Obsv, T, S_p, model):
     [L_5, pred_5] = loss_5(xuk, Num_meas, S_p, L_3, pred_3, model)
     [L_6, pred_6] = loss_6(xuk, Num_meas, Num_x_Obsv, T, L_4, pred_4, model)
 
-    L_total = alpha[0]*(L_gx + L_gu) +  alpha[1]*(L_3 + L_4)+ alpha[2]*(L_5 + L_6)
+    L_total = alpha[0]*(L_gx + L_gu) +  alpha[1]*L_3 + alpha[2]*L_4 + alpha[3]*(L_5 + L_6)
 
     return L_total, L_gx, L_gu, L_3, L_4, L_5, L_6
