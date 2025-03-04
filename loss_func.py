@@ -61,7 +61,7 @@ def loss_6(xuk, Num_meas, Num_x_Obsv, T, L_4, pred_4, model):
     return L_6, pred_6
 
 
-def total_loss(alpha, xuk, Num_meas, Num_x_Obsv, T, S_p, model):
+def total_loss(alpha, xuk, Num_meas, T, S_p, model):
 
     L_gx = loss_encoder_decoder(xuk[:,:,:Num_meas], model.x_Encoder, model.x_Decoder)
     L_gu = loss_encoder_decoder(xuk, model.u_Encoder, model.u_Decoder)
@@ -72,4 +72,4 @@ def total_loss(alpha, xuk, Num_meas, Num_x_Obsv, T, S_p, model):
 
     L_total = alpha[0]*(L_gx + L_gu) +  alpha[1]*(L_3 + L_4)+ alpha[2]*(L_5 + L_6)
 
-    return L_total
+    return L_total, L_gx, L_gu, L_3, L_4, L_5, L_6
