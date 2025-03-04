@@ -87,7 +87,7 @@ legend_fontsize = 10
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
 # Increase vertical size to accommodate additional subplots.
-fig = plt.figure(figsize=(12, 14))
+fig = plt.figure(figsize=(18, 8))
 
 # Top subplot: spans both columns of a 4x2 grid (first row)
 ax_top = plt.subplot2grid((4, 2), (0, 0), colspan=2)
