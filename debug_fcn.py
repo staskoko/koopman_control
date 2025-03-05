@@ -1,6 +1,7 @@
+import torch
 import torch.nn as nn
 import torch.optim as optim
-
+import torch.nn.functional as F
 
 def debug_L12(xuk, encoder, decoder):
     actual = torch.zeros(xuk.shape[0], len(xuk[0, :, 0]),xuk.shape[2], dtype=torch.float32)
